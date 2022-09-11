@@ -7,32 +7,45 @@ package cmd
 import (
 	"fmt"
 
-	"gorrit/util"
-
 	"github.com/spf13/cobra"
 )
 
 // projectCmd represents the project command
 var projectCmd = &cobra.Command{
 	Use:   "project",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Gerrit project xxx",
+	Long: `
+	Available commands:
+		* list project
+		* create project
+`,
+	// Run: func(cmd *cobra.Command, args []string) {
+	// 	fmt.Println("project called")
+	// },
+}
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+var projectListCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List Gerrit projects",
+	Long:  `List Gerrit projects, blah blah ...`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("project called")
-		err := util.Connect2Gerrit()
-		if err != nil {
-			fmt.Println("shit")
-		}
+		fmt.Println("list gerrit project")
+	},
+}
+
+var projectCreateCmd = &cobra.Command{
+	Use:   "create",
+	Short: "Create Gerrit projects",
+	Long:  `Create Gerrit projects, blah blah ...`,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("creating gerrit project")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(projectCmd)
+	projectCmd.AddCommand(projectListCmd)
+	projectCmd.AddCommand(projectCreateCmd)
 
 	// Here you will define your flags and configuration settings.
 
@@ -42,6 +55,6 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	projectCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// projectCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
 }
