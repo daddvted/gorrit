@@ -37,6 +37,7 @@ Current supportted:
 var groupListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List Gerrit groups",
+	Long:  `aaaa`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("list gerrit groups")
 		fmt.Println("args", len(args))
