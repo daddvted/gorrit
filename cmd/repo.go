@@ -32,6 +32,7 @@ var repoInfoCmd = &cobra.Command{
 	Short: "Show info from repo manifest",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("show info from repo manifest")
+		fmt.Println(manifestFile)
 	},
 }
 
@@ -49,5 +50,7 @@ func init() {
 	// is called directly, e.g.:
 	// repoCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 
-	repoCmd.Flags().StringVarP(&manifestFile, "manifest", "x", "", "xxx.xml")
+	// repoCmd.Flags().StringVarP(&manifestFile, "manifest", "x", "", "xml name(required)")
+	repoCmd.PersistentFlags().StringVarP(&manifestFile, "manifest", "x", "", "xml name(required)")
+	repoCmd.MarkPersistentFlagRequired("manifest")
 }
